@@ -28,8 +28,9 @@
     9001,
     8081
   ],
-  // "containerEnv": {
+  "containerEnv": {
   //   "HOST_WRKSPC_DIR": "/path/to/tee-poc/mnist-cpp",
   //   "HOST_DATA_DIR": "/path/to/tee-poc/mnist-cpp/data",
-  // }
+    "DATA_DIR": "/tee-mnist/data"
+  }
 }
