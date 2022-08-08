@@ -5,20 +5,17 @@ This is an example of the classic MNIST hand-written text recognition task using
 - [MNIST example - Pytorch C++](#mnist-example---pytorch-c)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
-  - [Running the example](#running-the-example)
+  - [Running the example (pseudo-distributed)](#running-the-example-pseudo-distributed)
   - [Clean up](#clean-up)
   - [Running in Trusted Execution Environment (TEE)](#running-in-trusted-execution-environment-tee)
 
 ## Prerequisites
-The only prerequisite to run this example is [Docker](https://www.docker.com).
+The working environment for this example makes use of [VSC remote containers](https://code.visualstudio.com/docs/remote/containers). The development container is defined by the following files:
 
-## Running the example
-
-Start the Docker environment:
-```
-bin/launch.sh
-```
-> This may take a few minutes.
+1. `Dockerfile` defines the development container along with its dependencies.
+2. `.devontainer/devcontainer.json.tpl` defines how VSC will access and create the developmet container. The teplate need to be copied to `.devontainer/devcontainer.json` and edited. Please refer to this document for more information: https://code.visualstudio.com/docs/remote/devcontainerjson-reference.
+ 
+## Running the example (pseudo-distributed)
 
 Download the data:
 ```
@@ -32,6 +29,7 @@ bin/build.sh
 > This may take a few minutes. After completion `package.tgz` and `seed.npz` should be built in your current working directory.
 
 Start FEDn:
+> **Note** If you are running on a remote container, you need to setup the remote host data path: `echo "HOST_DATA_DIR=/path/to/tee-mnist/data"  > .env`.
 ```
 sudo docker-compose up -d
 ```
