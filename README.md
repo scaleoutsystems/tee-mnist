@@ -14,6 +14,7 @@ The working environment for this example makes use of [VSC remote containers](ht
 
 1. `Dockerfile` defines the development container along with its dependencies.
 2. `.devontainer/devcontainer.json.tpl` defines how VSC will access and create the developmet container. The teplate need to be copied to `.devontainer/devcontainer.json` and edited. Please refer to this document for more information: https://code.visualstudio.com/docs/remote/devcontainerjson-reference.
+3. You may need to login into Scaleout's GitHub registry if the Dockerfile is based on `ghcr.io/scaleoutsystems/tee-gc/fedn:latest`.
  
 ## Running the example (pseudo-distributed)
 
