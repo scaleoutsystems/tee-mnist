@@ -96,7 +96,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 # Copy FEDn config
-COPY config/*.yaml /app/config/
+COPY config/*.yaml /app/notee-config/
 
 # Setup default environment
 COPY environment.yaml /tmp/environment.yaml
