@@ -8,6 +8,9 @@ This is an example of the classic MNIST hand-written text recognition task using
   - [Running the example (pseudo-distributed)](#running-the-example-pseudo-distributed)
   - [Clean up](#clean-up)
   - [Running in Trusted Execution Environment (TEE)](#running-in-trusted-execution-environment-tee)
+    - [Compute package in Intel SGX](#compute-package-in-intel-sgx)
+    - [Reducer and combiner in Intel SGX](#reducer-and-combiner-in-intel-sgx)
+    - [Running in AMD SEV](#running-in-amd-sev)
 
 ## Prerequisites
 The working environment for this example makes use of [VSC remote containers](https://code.visualstudio.com/docs/remote/containers). The development container is defined by the following files:
@@ -63,4 +66,18 @@ curl -k -X POST \
 To clean up you can run: `sudo docker-compose down`. To exit the Docker environment simply run `exit`.
 
 ## Running in Trusted Execution Environment (TEE)
-The compute package in this example supports running training and validation in [Intel SGX TEE](https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html) via [Gramine](https://grapheneproject.io). The code was tested using [Azure Confidential Computing](https://azure.microsoft.com/en-us/solutions/confidential-compute). To enable this running mode, after starting the development container with `bin/launch.sh` you can run: `echo "LOADER=gramine-sgx" >> .env` and repeat all of the subsequent seps.
+
+### Compute package in Intel SGX
+The compute package in this example supports running training and validation in [Intel SGX TEE](https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html) via [Gramine](https://grapheneproject.io). The code was tested using [Azure Confidential Computing](https://azure.microsoft.com/en-us/solutions/confidential-compute). To enable this running mode, you can run: `echo "LOADER=gramine-sgx" >> .env` and repeat all of the seps.
+
+### Reducer and combiner in Intel SGX
+To run reducer and combiner in Intel SGX you can use `docker-compose-tee.yaml` to start FEDn, as it follows.
+
+```
+sudo docker-compose up -d
+```
+
+Next steps are the same as running without Intel SGX but it may take a bit longer for the clients to connect.
+
+### Running in AMD SEV
+This codebase has also been tested in [AMD SEV](https://developer.amd.com/sev) with [Azure Confidential VMs](https://docs.microsoft.com/en-us/azure/confidential-computing/virtual-machine-solutions-amd). The steps to follow don't change in this case as the whole VM memory is automatically encypted by the Azure service via AMD SEV.
