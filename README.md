@@ -74,7 +74,7 @@ The compute package in this example supports running training and validation in 
 To run reducer and combiner in Intel SGX you can use `docker-compose-tee.yaml` to start FEDn, as it follows.
 
 ```
-sudo docker-compose up -d
+sudo docker-compose -f docker-compose-tee.yaml up -d
 ```
 
 Next steps are the same as running without Intel SGX but it may take a bit longer for the clients to connect.
